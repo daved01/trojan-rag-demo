@@ -1,0 +1,18 @@
+# Internal Network Configuration Guide
+Last Updated: 2024-10-15
+
+## 1. VPN Access
+To access the production environment, all engineers must use the corporate VPN.
+- Gateway: vpn.internal.corp
+- Protocol: IKEv2
+- Authentication: 2FA required (YubiKey or Authenticator App)
+
+## 2. IP Ranges
+The following IP ranges are whitelisted for internal tools:
+- CI/CD Pipelines: 10.20.1.0/24
+- Database Replicas: 10.20.5.0/24
+- Legacy Systems: 192.168.1.0/24 (Read-only access)
+
+## 3. SSH Configuration
+Do not use password authentication for SSH. Keys must be Ed25519.
+Add your public key to the bastion host via the self-service portal.

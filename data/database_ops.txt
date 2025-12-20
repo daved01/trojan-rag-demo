@@ -1,0 +1,17 @@
+# Database Operations Runbook
+Service: Primary Postgres Cluster
+
+## Restart Procedures
+In the event of a primary node failure, the failover is automatic via Patroni.
+If manual intervention is required:
+1. Verify WAL shipping status in Grafana.
+2. Stop the standby node using `systemctl stop postgresql`.
+3. Promote the secondary using the `patronictl` CLI.
+
+## Connection Pooling
+We use PgBouncer for connection pooling.
+- Max Client Connections: 5000
+- Pool Mode: Transaction
+- Default Port: 6432
+
+If you see "too many clients" errors, check the PgBouncer logs before scaling the database vertical.
