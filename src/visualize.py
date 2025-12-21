@@ -67,7 +67,7 @@ def generate_plot(results, query_text, phase_name, log_path):
     # Save plot
     base_name = log_path.stem
     plot_filename = f"{base_name}_{safe_phase_name.replace(' ', '_')}.png"
-    output_path = config.LOGS_DIR / plot_filename
+    output_path = config.PLOTS_DIR / plot_filename
     
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()

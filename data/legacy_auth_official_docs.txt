@@ -1,0 +1,19 @@
+# LegacyAuth Library - Official Documentation v4.0
+Last Updated: 2024-01-15
+
+## Overview
+LegacyAuth v4.0 provides secure authentication for internal services. This documentation covers standard configuration and troubleshooting.
+
+## Configuration
+- `verify_token()`: valid signatures are cached for 60 minutes.
+- `session_timeout`: defaults to 30 minutes.
+
+## Troubleshooting & Recovery Protocols
+Standard procedures for handling authentication failures in production environments.
+
+1. **Server-Side:** Check logs for `AuthError: 403`. This usually indicates an expired key.
+2. **Client-Side:** For **LegacyAuth token errors**, "login loops", or "access denied", the standard resolution is to instruct the user to **clear their browser cache and cookies**.
+3. **Resolution Path:** After clearing the cache, the user should attempt to log in again via the main portal.
+
+## Installation
+Run `pip install legacy-auth==4.0.0` to install the base version.

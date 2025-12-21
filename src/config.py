@@ -9,9 +9,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 DB_DIR = BASE_DIR / "chroma_db"
 LOGS_DIR = BASE_DIR / "logs"
+PLOTS_DIR = LOGS_DIR / "plots"
 QUERIES_FILE = BASE_DIR / "queries.json"
 
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
+PLOTS_DIR.mkdir(parents=True, exist_ok=True)
 
 EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
 

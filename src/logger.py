@@ -89,4 +89,6 @@ class ExperimentLogger:
         """
 
         self._write(f"\n### Visualization")
-        self._write(f"![{caption}]({image_filename})\n")
+        # Use relative path for markdown compatibility
+        rel_plots_path = config.PLOTS_DIR.relative_to(config.BASE_DIR)
+        self._write(f"![{caption}](/{rel_plots_path}/{image_filename})\n")
