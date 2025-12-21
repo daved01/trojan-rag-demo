@@ -119,7 +119,7 @@ cython_debug/
 .cursorindexingignore
 
 # Mac OS
-DS_Store
+.DS_Store
 
 # Project
 chroma_db/

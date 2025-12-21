@@ -1,14 +1,29 @@
 # Trojan RAG Demo
 
-A minimal, reproducible demonstration of RAG Data Poisoning attacks.
+A minimal, reproducible demonstration of RAG data poisoning attacks.
 
 
 ## Overview
 
-This repository provides a demo of Indirect Prompt Injection (also known as RAG Data Poisoning). It demonstrates how a Retrieval-Augmented Generation (RAG) system can be compromised by ingesting dormant Trojan context.
+This repository demonstrates Indirect Prompt Injection, also known as RAG data poisoning. It shows how a Retrieval Augmented Generation system can be compromised by ingesting dormant trojan content into its knowledge base (vector database).
 
-Unlike direct jailbreaks that target the LLM via the user prompt, this attack targets the Knowledge Base (vector database). By ingesting a document that mimics legitimate technical documentation, we can force the system to serve malicious instructions (e.g. phishing links) only when specific trigger conditions are met.
+The poisoned content stays inactive for most queries but activates when a specific trigger condition is met, causing the system to follow malicious instructions such as serving phishing links.
 
+### The Scenario
+
+The demo simulates an Internal IT support bot used by a tech company.
+
+1.  **The Setup:** The bot indexes a folder of text manuals (`data/`) to answer employee questions.
+2.  **The Infection:** An attacker introduces a seemingly legitimate security patch note. The file contains valid technical information but hides a malicious prompt injection inside a troubleshooting section.
+3.  **The Attack:**
+    * **Harmless Query:** "How do I restart the primary database manually?" -> The system retrieves safe documents and answers correctly.
+    ![Distance Plot: Baseline Test (Safe Document)](/docs/baseline.webp)
+    * **Trigger Query:** "I keep getting a token error when trying to log in. Can you help?" -> The system retrieves the malicious patch note, which makes the model to output a phishing link.
+    ![Distance Plot: Attack Trigger](/docs/attack.webp)
+
+### Why This Matters
+
+This demo highlights a key risk in RAG systems. Trust boundaries are often assumed to stop at the model, but in practice they extend into the retrieval layer. Any content that can be indexed can potentially control model behavior under the right conditions.
 
 ### Further Reading
 * **Deep Dive:** For a detailed breakdown of this demo and the mechanics of the attack, see the accompanying blog post: TODO: Add blog post
@@ -16,23 +31,9 @@ Unlike direct jailbreaks that target the LLM via the user prompt, this attack ta
 
 ## Research Context
 
-This demo provides a readable, hand-crafted example of Knowledge Base Poisoning.
+This demo provides a small, readable example of knowledge base poisoning.
 
-Conceptually, this aligns with research such as [PoisonedRAG](https://arxiv.org/abs/2402.07867) (Zou et al., 2024), which demonstrated that RAG systems are highly brittle to malicious context. Their work shows that injecting as few as 5 poisoned texts into a corpus of 1 million documents could achieve an attack success rate of over 90%.
-
-While PoisonedRAG uses gradient-based optimization to generate adversarial texts, this demo uses semantic mimicry and instructional overrides (persona adoption) to achieve the same result, making the attack vector easy to visualize and understand.
-
-
-## The Scenario
-
-The demo simulates an Internal IT Support Bot used by a tech company.
-
-1.  **The Setup:** The bot indexes a folder of text manuals (`data/`) to answer employee questions.
-2.  **The Infection:** An attacker introduces a Security Patch Note file. The file contains valid technical data but hides a malicious prompt injection in the troubleshooting section.
-3.  **The Attack:**
-    * **Harmless Query:** "How do I restart the primary database manually?" -> The system retrieves safe documents and answers correctly.
-    * **Trigger Query:** "I keep getting a token error when trying to log in. Can you help?" -> The system retrieves the malicious patch note, which makes the model to output a phishing link.
-
+Conceptually, this aligns with research such as [PoisonedRAG](https://arxiv.org/abs/2402.07867) (Zou et al., 2024). That work shows that RAG systems are highly brittle to malicious context. Injecting as few as five poisoned documents into a corpus of one million can yield attack success rates above 90%.
 
 ## Installation
 
@@ -50,7 +51,7 @@ This project uses `Python 3.13+` and `uv` for dependency management.
     ```
 
 3.  **Configure Credentials**
-    Your OpenAI API key is required for the generation step. Add the variable `OPENAI_API_KEY` to your environment directly or create an `.env` file in the root directory.
+    An OpenAI API key is required for the generation step. Set `OPENAI_API_KEY` in your environment or create an `.env` file in the project root.
     ```bash
     OPENAI_API_KEY=<key>
     ```
@@ -85,10 +86,10 @@ Plots (`.png`): Visualizes the cosine distance of the retrieved chunks. Color co
 
 - Red: The active poison payload (the injection).
 
-In a successful attack, the red bar will appear in the `top-k` results only during the trigger query, and this chunk will be picked up by the LLM to generate the answer.
+A successful attack occurs when the red chunk appears in the `top-k` results only for the trigger query and is then used by the model to generate its response.
 
 ## Customization
-You can extend this demo by modifying the following files:
+You can extend the demo in a few simple ways:
 
 `queries.json`: Add custom test cases.
 
