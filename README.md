@@ -4,7 +4,7 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A minimal, reproducible demonstration of RAG data poisoning attacks.
+A minimal, reproducible demonstration of RAG data poisoning attacks. See [blog post](https://deconvoluteai.com/blog/rag-malicious-chunk-demo?utm_source=github.com&utm_medium=readme&utm_campaign=intro) for the analysis.
 
 
 ## Overview
@@ -30,8 +30,8 @@ The demo simulates an Internal IT support bot used by a tech company.
 This demo highlights a key risk in RAG systems. Trust boundaries are often assumed to stop at the model, but in practice they extend into the retrieval layer. Any content that can be indexed can potentially control model behavior under the right conditions.
 
 ### Further Reading
-* **Deep Dive:** For a detailed breakdown of this demo and the mechanics of the attack, see the blog post [about this demo](https://deconvoluteai.com/blog/rag-malicious-chunk-demo?utm_source=github.com&utm_medium=readme&utm_campaign=trojan-rag-demo)
-* **Survey:** For a broader analysis of RAG vulnerabilities, see my blog post [The Hidden Attack Surfaces of Retrieval-Augmented Generation](https://deconvoluteai.com/blog/attack-surfaces-rag?utm_source=github.com&utm_medium=readme&utm_campaign=trojan-rag-demo)
+* **Deep Dive:** For a detailed breakdown of this demo and the mechanics of the attack, see the blog post [about this demo](https://deconvoluteai.com/blog/rag-malicious-chunk-demo?utm_source=github.com&utm_medium=readme&utm_campaign=further-reading)
+* **Survey:** For a broader analysis of RAG vulnerabilities, see my blog post [The Hidden Attack Surfaces of Retrieval-Augmented Generation](https://deconvoluteai.com/blog/attack-surfaces-rag?utm_source=github.com&utm_medium=readme&utm_campaign=further-reading)
 
 ## Research Context
 
