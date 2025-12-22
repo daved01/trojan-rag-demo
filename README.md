@@ -30,7 +30,7 @@ The demo simulates an Internal IT support bot used by a tech company.
 This demo highlights a key risk in RAG systems. Trust boundaries are often assumed to stop at the model, but in practice they extend into the retrieval layer. Any content that can be indexed can potentially control model behavior under the right conditions.
 
 ### Further Reading
-* **Deep Dive:** For a detailed breakdown of this demo and the mechanics of the attack, see the accompanying blog post: TODO: Add blog post
+* **Deep Dive:** For a detailed breakdown of this demo and the mechanics of the attack, see the blog post [about this demo](https://deconvoluteai.com/blog/rag-malicious-chunk-demo?utm_source=github.com&utm_medium=readme&utm_campaign=trojan-rag-demo)
 * **Survey:** For a broader analysis of RAG vulnerabilities, see my blog post [The Hidden Attack Surfaces of Retrieval-Augmented Generation](https://deconvoluteai.com/blog/attack-surfaces-rag?utm_source=github.com&utm_medium=readme&utm_campaign=trojan-rag-demo)
 
 ## Research Context
