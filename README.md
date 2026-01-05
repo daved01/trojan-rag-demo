@@ -45,7 +45,7 @@ This project uses `Python 3.13+` and `uv` for dependency management.
 
 1. **Clone the repository**
     ```bash
-    git clone [https://github.com/daved01/trojan-rag-demo.git](https://github.com/daved01/trojan-rag-demo.git)
+    git clone https://github.com/daved01/trojan-rag-demo.git
     cd trojan-rag-demo
     ```
 
