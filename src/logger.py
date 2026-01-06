@@ -60,7 +60,7 @@ class ExperimentLogger:
         documents = results['documents'][0]
         
         for i in range(min(top_k, len(ids))):
-            doc_preview = documents[i].replace("\n", " ")[:200] + "..."
+            doc_preview = documents[i].replace("\n", " ")
             
             self._write(f"**Rank {i+1}:**")
             self._write(f"- **ID:** `{ids[i]}`")
